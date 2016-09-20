@@ -16,14 +16,22 @@
  	int myX, myY;
  	Bacteria()
  	{
- 		myX = 250;
- 		myY = 250;
+ 		myX = (int)(Math.random()*500);
+ 		myY = (int)(Math.random()*500);
  	}
  	void walk()
  	{
- 		myX = myX + (int)(Math.random()*3)-1;
- 		myY = myY + (int)(Math.random()*3)-1; 
+ 		if (mousePressed == true && myX < mouseX)
+ 		{
+			myX = myX + (int)(Math.random()*3);
+ 		}
+ 		if (mousePressed == true && myX < mouseX)
+ 		{
+ 			myX = myX + (int)(Math.random()*3)-1;
+ 			myY = myY + (int)(Math.random()*3)-1; 
+ 		}		
  	}
+
  	void show()
  	{
  		fill(255);
