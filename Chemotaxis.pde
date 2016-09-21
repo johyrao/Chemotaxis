@@ -1,20 +1,27 @@
- //declare bacteria variables here   
- Bacteria bob = new Bacteria();
- void setup()   
- {     
- 	size(500,500);
- 	background(255);
- 	frameRate(600);
- }   
- void draw()   
- {    
- 	bob.walk();
- 	bob.show();  
- }  
- class Bacteria    
- {     
+Firefly[] bob; 
+void setup()   
+{     
+	size(500,500);
+ 	frameRate(40);
+ 	bob = new Firefly[10];
+	for(int i = 0; i < bob.length; i++)
+	{
+		bob[i] = new Firefly();
+	}
+}   
+void draw()   
+{    
+ 	background(0);
+ 	for(int i = 0; i < bob.length; i++)
+ 	{
+ 		bob[i].walk();
+ 		bob[i].show();
+ 	}
+}  
+class Firefly    
+{     
  	int myX, myY;
- 	Bacteria()
+ 	Firefly()
  	{
  		myX = (int)(Math.random()*500);
  		myY = (int)(Math.random()*500);
@@ -25,16 +32,30 @@
  		{
 			myX = myX + (int)(Math.random()*3);
  		}
- 		if (mousePressed == true && myX < mouseX)
+ 		if (mousePressed == true && myY < mouseY)
  		{
- 			myX = myX + (int)(Math.random()*3)-1;
- 			myY = myY + (int)(Math.random()*3)-1; 
+ 			myY = myY + (int)(Math.random()*3); 
+ 		}
+ 		if (mousePressed == true && myX > mouseX)
+ 		{
+			myX = myX - (int)(Math.random()*3);
+ 		}
+ 		if (mousePressed == true && myY > mouseY)
+ 		{
+ 			myY = myY - (int)(Math.random()*3); 
+ 		}
+ 		else 
+ 		{
+ 			myX = myX + (int)(Math.random()*5)-2;
+ 			myY = myY + (int)(Math.random()*5)-2;  					
  		}		
  	}
-
  	void show()
  	{
- 		fill(255);
- 		ellipse(myX, myY, 10, 10);
+ 		noStroke();
+ 		fill(237,255,144);
+ 		ellipse(myX,myY,8,8);
+ 		fill(249,255,144,100);
+ 		ellipse(myX,myY,15,15);
  	}   
- }    
+}    
